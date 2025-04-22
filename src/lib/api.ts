@@ -30,22 +30,38 @@ const mockBeats = [
 // API service
 export const api = {
   // Generate a beat based on a prompt
+  // API key is now loaded from environment variable for security.
   generateBeat: async (prompt) => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // For demo purposes, we'll return a random beat pattern
-    const randomBeat = mockBeats[Math.floor(Math.random() * mockBeats.length)];
-    
-    // Modify the beat based on the prompt (in a real app, this would be AI-generated)
-    const modifiedBeat = {
-      ...randomBeat,
-      id: `gen-${Date.now()}`,
-      name: prompt.length > 20 ? prompt.substring(0, 20) + '...' : prompt,
-      createdAt: new Date().toISOString(),
-    };
-    
-    return modifiedBeat;
+    const API_KEY = import.meta.env.VITE_UNIQUE_BEAT_API_KEY;
+    try {
+      const response = await fetch("https://api.uniquebeat.com/v1/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
+        },
+        body: JSON.stringify({ prompt }),
+      });
+      if (!response.ok) throw new Error("Failed to generate beat");
+      const data = await response.json();
+      // Assume the API returns a beat object compatible with your app
+      return {
+        ...data.beat,
+        id: data.beat.id || `gen-${Date.now()}`,
+        name: data.beat.name || (prompt.length > 20 ? prompt.substring(0, 20) + '...' : prompt),
+        createdAt: new Date().toISOString(),
+      };
+    } catch (error) {
+      toast.error('Failed to generate beat from API. Using fallback.');
+      // Fallback to mock beat
+      const randomBeat = mockBeats[Math.floor(Math.random() * mockBeats.length)];
+      return {
+        ...randomBeat,
+        id: `gen-${Date.now()}`,
+        name: prompt.length > 20 ? prompt.substring(0, 20) + '...' : prompt,
+        createdAt: new Date().toISOString(),
+      };
+    }
   },
   
   // Save a beat

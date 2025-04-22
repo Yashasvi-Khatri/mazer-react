@@ -6,7 +6,7 @@ import { Wand2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { api } from '@/lib/api';
 
-const BeatGenerator = ({ onBeatGenerated }) => {
+const BeatGenerator = ({ onBeatGenerated, onStop }) => {
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   
@@ -65,6 +65,13 @@ const BeatGenerator = ({ onBeatGenerated }) => {
                   Generate Beat
                 </>
               )}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => onStop && onStop()}
+              className="w-full"
+            >
+              Stop
             </Button>
           </div>
           
