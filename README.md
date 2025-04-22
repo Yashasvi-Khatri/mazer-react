@@ -1,54 +1,60 @@
-# Welcome to your Lovable project
+# Mazer React
 
-## Project info
+A modern, interactive web app for creating, playing, and saving unique musical beats with real-world instrument simulation and secure authentication.
 
-**URL**: https://lovable.dev/projects/b5e6927c-e519-483d-a457-c353ad709dc1
+---
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Instrument Cluster:** Realistic UI for Piano, Drums, Bass, and Synth with clickable keys/pads and real audio samples.
+- **Beat Generator Chatbot:** Describe a beat in natural language and generate unique beats using an AI-powered API.
+- **Recording & Playback:** Record your instrument sessions, play back, and download recordings.
+- **Save & Reuse Beats:** Save generated beats, play them, and use them with the instrument cluster.
+- **Authentication:** Secure login/signup using Firebase Auth (no demo accounts).
+- **API Key Security:** API keys are managed securely using environment variables.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b5e6927c-e519-483d-a457-c353ad709dc1) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+### 1. Clone the Repository
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+git clone https://github.com/Yashasvi-Khatri/mazer-react.git
+cd mazer-react
 ```
 
-**Edit a file directly in GitHub**
+### 2. Install Dependencies
+```sh
+npm install
+# or
+yarn install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 3. Set Up Environment Variables
+Create a `.env` file in the project root:
+```env
+VITE_UNIQUE_BEAT_API_KEY=your_unique_beat_api_key_here
+```
+**Note:** The `.env` file is ignored by git for security. Never commit API keys.
 
-**Use GitHub Codespaces**
+### 4. Start the Development Server
+```sh
+npm run dev
+# or
+yarn dev
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Open [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal) in your browser.
+
+---
+
+## Usage
+- **Generate a Beat:** Use the Beat Generator to describe and create a custom beat.
+- **Play Instruments:** Interact with the instrument cluster to play live sounds.
+- **Record & Download:** Record your session and download the audio.
+- **Save Beats:** Save generated beats and use them later with instrument playback.
+
+---
 
 ## What technologies are used for this project?
 
